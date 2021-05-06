@@ -1,8 +1,10 @@
-import express, { Response, Request } from "express";
+import express from "express";
+import morgan from "morgan";
+import { getPost } from "./routes/post";
+
 const app = express();
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("I am NodeJS");
-});
+app.get("/", getPost);
 
-app.listen(3000);
+const port = 3000;
+app.listen(port, () => console.log(`NodeJS is listening on port ${port}`));
