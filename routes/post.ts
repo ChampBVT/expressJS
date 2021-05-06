@@ -1,5 +1,11 @@
-import { Request, Response } from "express";
+import { Router } from 'express';
+import { createPost, getPost, getPostJSON } from '../controllers/post';
+import { postValidator, validatePost } from '../validators/post';
 
-export const getPost = (_req: Request, res: Response) => {
-  res.send("I am NodeJS");
-};
+const router = Router();
+
+router.get('/', getPost);
+router.get('/json', getPostJSON);
+router.post('/', postValidator(), validatePost, createPost);
+
+export default router;
